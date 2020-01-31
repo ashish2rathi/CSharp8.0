@@ -9,17 +9,18 @@ namespace NonNullableReferenceTypes
     {
         static void Main(string[] args)
         {
-            StringExample();
+            //StringExample();
             //MessageObjectExample();
             //MessageExampleWithNullCheck();
             //NullCoalescingOperatorExample();
-            //NullForgivingOperatorExample();
+            NullForgivingOperatorExample();
         }
 
         static void StringExample()
         {
-            ////string? message = null;
-            string message = null;
+            string? message = null;
+            //string message = null;
+
             Console.WriteLine(message);
             Console.WriteLine("Press enter to end");
             Console.Read();
@@ -70,10 +71,11 @@ namespace NonNullableReferenceTypes
                 Text = "Hi buddy",
                 From = null
             };
-            MessagePopulator.Populate(message);
+            var message2 = MessagePopulator.Populate(message);
             Console.WriteLine(message.Text);
             Console.WriteLine(message.From);
-            //Console.WriteLine(message.From!.Length);
+            var length = message2.From.Length;
+            //Console.WriteLine(message.From.Length);
             Console.WriteLine(message.ToUpperFrom);
             Console.WriteLine("Press enter to end");
             Console.Read();
@@ -82,9 +84,9 @@ namespace NonNullableReferenceTypes
 
     class Message
     {
-        public string From { get; set; }
+        public string? From { get; set; }
         public string Text { get; set; } = "";
-        public string ToUpperFrom => From.ToUpper();
+        public string? ToUpperFrom => From?.ToUpper();
 
         //public string ToUpperFrom()
         //{
@@ -104,11 +106,13 @@ namespace NonNullableReferenceTypes
 
     static class MessagePopulator
     {
-        public static void Populate(Message message)
+        public static Message Populate(Message message)
         {
-            message.GetType().InvokeMember("From",
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty,
-                Type.DefaultBinder, message, new[] {"Value set using reflection"});
+            message.From = "Something";
+            return message;
+            //message.GetType().InvokeMember("From",
+            //    BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty,
+            //    Type.DefaultBinder, message, new[] {"Value set using reflection"});
         }
         
     }

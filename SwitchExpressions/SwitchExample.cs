@@ -38,9 +38,11 @@ namespace SwitchExpressions
                     return "Cheque on hold";
 
                 //Not optional
-                default:
-                    return "Cheque on hold";
+                //default:
+                //    return "Cheque on hold";
             }
+
+            return "Cheque on hold";
         }
 
 
@@ -51,8 +53,8 @@ namespace SwitchExpressions
                 ChequeStatus.Cleared => "Cheque cleared",
                 ChequeStatus.InProgress => "Cheque clear is in progress",
                 ChequeStatus.Bounced => "Cheque bounced due to insufficient balance",
-                ChequeStatus.OnHold => "Cheque on hold",
-                _ => "Cheque is invalid" //optional
+                ChequeStatus.OnHold => "Cheque on hold"
+                //_ => "Cheque is invalid" //optional
             };
         }
 

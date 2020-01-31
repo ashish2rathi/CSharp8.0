@@ -20,9 +20,9 @@ namespace SwitchExpressions
             Console.WriteLine($"Overall price (including tax) of { address.State} is: { ComputeOverallPrice(address, 2.4M)}");
         }
 
-        private static decimal ComputeOverallPrice(Address location, decimal price)
+        private static decimal ComputeOverallPrice(Address adrress, decimal price)
             =>
-                location switch
+                adrress switch
                 {
                     { State: "MH" } => price + price * 0.78M,
                     { State: "BIHAR" } => price + price * 0.06M,
@@ -42,10 +42,10 @@ namespace SwitchExpressions
             =>
                 location switch
                 {
-                    { State: "MH", City: "PUNE" } => price + price * 0.78M,
                     { State: "MH", City: "MUMBAI" } => price + price * 0.06M,
                     { State: "BIHAR", City: "AURANGABAD" } => price + price * 0.07M,
-                    _ => 0M
+                    { State: "MH", City: _ } => price + price * 0.78M
+                    //_ => 0M
                 };
 
         #endregion PropertyPattern2

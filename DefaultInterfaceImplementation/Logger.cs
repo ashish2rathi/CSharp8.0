@@ -21,10 +21,10 @@ namespace DefaultInterfaceImplementation
             Console.WriteLine("Implemented:" + message);
         }
 
-        //public void Log(Exception ex)
-        //{
-        //    Log("Overridden :" + ex.Message);
-        //}
+        public void Log(Exception ex)
+        {
+            Log("Overridden :" + ex.Message);
+        }
     }
 
     #endregion Example1
